@@ -1,15 +1,16 @@
+// app/api/line-webhook/route.ts
 import { NextRequest } from "next/server";
 import crypto from "crypto";
 
-const LINE_CHANNEL_SECRET = process.env.LINE_CHANNEL_SECRET!;
-const LINE_CHANNEL_ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN!;
+const CHANNEL_SECRET = process.env.LINE_CHANNEL_SECRET!;
+const ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN!;
 
-const POST = async (req: NextRequest) => {
+export async function POST(req: NextRequest) {
   const body = await req.text();
   const signature = req.headers.get("x-line-signature") || "";
 
   const hash = crypto
-    .createHmac("SHA256", LINE_CHANNEL_SECRET)
+    .createHmac("SHA256", CHANNEL_SECRET)
     .update(body)
     .digest("base64");
 
@@ -30,7 +31,7 @@ const POST = async (req: NextRequest) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${LINE_CHANNEL_ACCESS_TOKEN}`,
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
         },
         body: JSON.stringify({
           replyToken: event.replyToken,
@@ -41,6 +42,5 @@ const POST = async (req: NextRequest) => {
   }
 
   return new Response("OK", { status: 200 });
-};
+}
 
-export { POST };
