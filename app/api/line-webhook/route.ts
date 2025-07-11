@@ -33,16 +33,14 @@ const POST = async (req: NextRequest) => {
           Authorization: `Bearer ${LINE_CHANNEL_ACCESS_TOKEN}`,
         },
         body: JSON.stringify({
-          body: JSON.stringify({
-            replyToken: event.replyToken,
-            message: [replyMessage],
-          }),
+          replyToken: event.replyToken,
+          message: [replyMessage],
         }),
       });
     }
   }
 
-  return new Response("OK", {status: 200});
+  return new Response("OK", { status: 200 });
 };
 
 export { POST };
