@@ -34,7 +34,7 @@ const POST = async (req: NextRequest) => {
         },
         body: JSON.stringify({
           replyToken: event.replyToken,
-          message: [replyMessage],
+          messages: [replyMessage],
         }),
       });
     }
