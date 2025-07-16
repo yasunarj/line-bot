@@ -37,10 +37,10 @@ export const getReplyMessage = (userText: string) => {
 
   if (text.includes("私の住所")) return secrets.address;
   if (text.includes("私のパスワード")) return secrets.password;
-  if (text.includes("")) return "";
-  if (text.includes("")) return "";
-  if (text.includes("")) return "";
-  if (text.includes("")) return "";
+  // if (text.includes("")) return "";
+  // if (text.includes("")) return "";
+  // if (text.includes("")) return "";
+  // if (text.includes("")) return "";
 
   return `あなたのメッセージ: ${userText}`;
 };
