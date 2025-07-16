@@ -1,7 +1,7 @@
 export const getReplyMessage = (userText: string) => {
   const text = userText.toLowerCase();
 
-  const myAddress = process.env.NEXT_PUBLIC_MY_ADDRESS;
+  // const myAddress = process.env.NEXT_PUBLIC_MY_ADDRESS;
   const myPassword = process.env.NEXT_PUBLIC_MY_PASSWORD
 
   const greetingMorning = [
