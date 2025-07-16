@@ -10,6 +10,7 @@ export const getReplyMessage = (userText: string) => {
     "おはよー",
     "おっはー",
     "オハヨウ",
+    "おはー",
   ];
   if (greetingMorning.some((word) => text.includes(word))) {
     return "おはようございます！今日も素敵な1日になりますね✨";
