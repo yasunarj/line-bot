@@ -37,7 +37,7 @@ export const getReplyMessage = (userText: string) => {
     return "こんばんは!今日もいい夜ですね🌙";
   }
 
-  if (text.includes("私の住所")) return myAddress;
+  if (text.includes("私の住所")) return "住所";
   if (text.includes("私のパスワード")) return myPassword;
   // if (text.includes("")) return "";
   // if (text.includes("")) return "";
