@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  env: {
+    NEXT_PUBLIC_MY_ADDRESS: process.env.NEXT_PUBLIC_MY_ADDRESS,
+    NEXT_PUBLIC_MY_PASSWORD: process.env.NEXT_PUBLIC_MY_PASSWORD,
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
+
