@@ -1,6 +1,7 @@
 // app/api/line-webhook/route.ts
 import { NextRequest } from "next/server";
 import crypto from "crypto";
+import { getReplyMessage } from "@/app/lib/line/getReplyMessage";
 
 const CHANNEL_SECRET = process.env.LINE_CHANNEL_SECRET!;
 const ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN!;
@@ -22,9 +23,10 @@ export async function POST(req: NextRequest) {
 
   for (const event of events) {
     if (event.type === "message" && event.message.type === "text") {
-      const replyMessage = {
+      const replyMessage = getReplyMessage(event.message.text);
+      const replyFetchMessage = {
         type: "text",
-        text: `あなたのメッセージ: ${event.message.text}`,
+        text: replyMessage,
       };
 
       await fetch("https://api.line.me/v2/bot/message/reply", {
@@ -35,7 +37,7 @@ export async function POST(req: NextRequest) {
         },
         body: JSON.stringify({
           replyToken: event.replyToken,
-          messages: [replyMessage],
+          messages: [replyFetchMessage],
         }),
       });
     }
