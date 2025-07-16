@@ -1,7 +1,8 @@
-import { secrets } from "@/app/.local/secrets";
-
 export const getReplyMessage = (userText: string) => {
   const text = userText.toLowerCase();
+
+  const myAddress = process.env.NEXT_PUBLIC_MY_ADDRESS;
+  const myPassword = process.env.NEXT_PUBLIC_MY_PASSWORD
 
   const greetingMorning = [
     "おはようございます",
@@ -35,8 +36,8 @@ export const getReplyMessage = (userText: string) => {
     return "こんばんは!今日もいい夜ですね🌙";
   }
 
-  if (text.includes("私の住所")) return secrets.address;
-  if (text.includes("私のパスワード")) return secrets.password;
+  if (text.includes("私の住所")) return myAddress;
+  if (text.includes("私のパスワード")) return myPassword;
   // if (text.includes("")) return "";
   // if (text.includes("")) return "";
   // if (text.includes("")) return "";
