@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
   }
 
   const events = JSON.parse(body).events;
+  console.log("受信したイベント:", JSON.stringify(events, null, 2));
 
   for (const event of events) {
     if (event.type === "message" && event.message.type === "text") {

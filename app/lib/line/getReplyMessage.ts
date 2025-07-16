@@ -1,3 +1,5 @@
+import { secrets } from "@/app/.local/secrets";
+
 export const getReplyMessage = (userText: string) => {
   const text = userText.toLowerCase();
 
@@ -33,12 +35,12 @@ export const getReplyMessage = (userText: string) => {
     return "こんばんは!今日もいい夜ですね🌙";
   }
 
-  return `あなたのメッセージ: ${text}`
+  if (text.includes("私の住所")) return secrets.address;
+  if (text.includes("私のパスワード")) return secrets.password;
+  if (text.includes("")) return "";
+  if (text.includes("")) return "";
+  if (text.includes("")) return "";
+  if (text.includes("")) return "";
 
-  // if (text.includes("")) return "";
-  // if (text.includes("")) return "";
-  // if (text.includes("")) return "";
-  // if (text.includes("")) return "";
-  // if (text.includes("")) return "";
-  // if (text.includes("")) return "";
+  return `あなたのメッセージ: ${userText}`;
 };
