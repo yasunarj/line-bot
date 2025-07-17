@@ -5,7 +5,7 @@ export const getWeather = async (city: string = "Utsunomiya,jp") => {
   try {
     const res = await fetch(url);
     if (!res.ok) {
-      throw new Error("天気予報の取得に失敗しました");
+      throw new Error("天気予報が取得できませんでした");
     }
     const data = await res.json();
     const { weather, main } = data;
