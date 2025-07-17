@@ -43,8 +43,7 @@ export const getReplyMessage = async (userText: string) => {
   if (text.includes("私のパスワード")) return myPassword;
   if (text.includes("今日の天気")) {
     const message = await getWeather();
-    return `晴れです ${message}`;
-    // return message;
+    return `お問い合わせありがとうございます。 ${message}`;
   }
   // if (text.includes("")) return "";
   // if (text.includes("")) return "";
