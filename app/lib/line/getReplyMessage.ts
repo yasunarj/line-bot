@@ -1,8 +1,10 @@
-export const getReplyMessage = (userText: string) => {
+import { getWeather } from "./getWeather";
+
+export const getReplyMessage = async (userText: string) => {
   const text = userText.toLowerCase();
 
-  const myAddress = process.env.NEXT_PUBLIC_MY_ADDRESS;
-  const myPassword = process.env.NEXT_PUBLIC_MY_PASSWORD;
+  const myAddress = process.env.NEXT_PUBLIC_MY_ADDRESS!;
+  const myPassword = process.env.NEXT_PUBLIC_MY_PASSWORD!;
 
   const greetingMorning = [
     "おはようございます",
@@ -39,7 +41,10 @@ export const getReplyMessage = (userText: string) => {
 
   if (text.includes("私の住所")) return myAddress;
   if (text.includes("私のパスワード")) return myPassword;
-  // if (text.includes("")) return "";
+  if (text.includes("今日の天気")) {
+    const message = await getWeather();
+    return message;
+  }
   // if (text.includes("")) return "";
   // if (text.includes("")) return "";
   // if (text.includes("")) return "";
