@@ -42,7 +42,7 @@ export const getReplyMessage = async (userText: string) => {
   if (text.includes("私の住所")) return myAddress;
   if (text.includes("私のパスワード")) return myPassword;
   if (text.includes("今日の天気")) {
-    const message = await getWeather();
+    const message = await getWeather("Tokyo");
     return `お問い合わせありがとうございます。 ${message}`;
   }
   // if (text.includes("")) return "";
