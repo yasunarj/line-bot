@@ -13,7 +13,7 @@ export const getWeather = async (city: string = "Utsunomiya,jp") => {
     const description = weather[0]?.description ?? "不明";
     const temp = main?.temp ?? "?";
 
-    return `現在の${city}の天気は「${description}」、気温は${temp}です。`;
+    return `現在の${city}の天気は「${description}」、気温は${temp}℃です。`;
   } catch (e) {
     console.error("getWeather error", e);
     return "天気予報の取得に失敗しました。";
