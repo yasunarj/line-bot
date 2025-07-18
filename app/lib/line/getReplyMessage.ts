@@ -1,4 +1,7 @@
 import { getWeather } from "./getWeather";
+import { cityMap } from "./cityMap";
+import { getTomorrowWeather } from "./getTomorrowWeather";
+
 
 export const getReplyMessage = async (userText: string) => {
   const text = userText.toLowerCase();
@@ -41,11 +44,28 @@ export const getReplyMessage = async (userText: string) => {
 
   if (text.includes("私の住所")) return myAddress;
   if (text.includes("私のパスワード")) return myPassword;
-  if (text.includes("今日の天気")) {
-    const message = await getWeather();
-    return `お問い合わせありがとうございます。 ${message}`;
+  if (text.includes("明日の") && text.includes("天気")) {
+    const match = userText.match(/明日の(.+?)の天気/);
+    const cityName = match?.[1]
+
+    if(cityName && cityMap[cityName]) {
+      const weatherMessage = await getTomorrowWeather(cityMap[cityName]);
+      return `明日の${cityName}の天気は ${weatherMessage}`
+    }
   }
-  // if (text.includes("")) return "";
+
+  if (text.includes("天気")) {
+    const match = userText.match(/(.+?)の天気/);
+    const cityName = match?.[1];
+
+    if(cityName && cityMap[cityName]) {
+      const weatherMessage = await getWeather(cityMap[cityName])
+      return `現在の${cityName}の天気は${weatherMessage}`;
+    }
+
+    const defaultMessage = await getWeather();
+    return `ご指定の場所の天気が取得できませんでした。 宇都宮の天気は${defaultMessage}`;
+  }
   // if (text.includes("")) return "";
   // if (text.includes("")) return "";
 
